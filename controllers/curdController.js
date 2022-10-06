@@ -1,12 +1,13 @@
 const User = require('../models/user');
 
-exports.getIndex = (req, res, next) => {
-    res.render('/');
-};
+exports.getAll = (req, res, next) => {
 
-exports.getAddUser = (req, res, next) => {
-    res.render('/create');
-}
+    User.fetchAll()
+        .then(([rows]) => {
+            res.status(200).json(rows);
+        })
+        .catch(err => console.log(err));
+};
 
 exports.postAddUser = (req, res, next) => {
     const name = req.body.name;
@@ -20,7 +21,7 @@ exports.postAddUser = (req, res, next) => {
         })
         .then(() => {
             console.log('User Created!')
-            res.redirect('/');
+            // res.redirect('/');
         })
         .catch(err => {
             console.log(err);
@@ -28,7 +29,7 @@ exports.postAddUser = (req, res, next) => {
 }
 
 exports.postEditUser = (req, res, next) => {
-    // const userId = req.body.userId;
+    const userId = req.params.userId;
     const updatedName = req.body.name;
     const updatedEmail = req.body.email;
     const updatedMobile = req.body.mobile;
@@ -41,20 +42,20 @@ exports.postEditUser = (req, res, next) => {
         })
         .then(result => {
             console.log('UPDATED USER!');
-            res.redirect('/');
+            // res.redirect('/');
         })
         .catch(err => console.log(err));
 };
 
 exports.postDeleteUser = (req, res, next) => {
-    // const userId = req.body.userId;
+    const userId = req.params.userId;
     Product.findByPk(userId)
         .then(user => {
             return user.destroy();
         })
         .then(result => {
             console.log('DESTROYED USER!');
-            res.redirect('/');
+            // res.redirect('/');
         })
         .catch(err => console.log(err));
 };

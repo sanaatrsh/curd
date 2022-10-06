@@ -13,8 +13,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, '../', 'views')));
 
 app.use(userRoutes);
-app.set('views', 'views');
-app.set('view engine', 'ejs');
 
 sequelize
     // .sync({ force: true })

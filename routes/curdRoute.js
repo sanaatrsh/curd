@@ -6,9 +6,10 @@ const { body } = require('express-validator');
 
 const router = express.Router();
 
-router.get('/', curdController.getIndex);
+// router.get('/', curdController.getIndex);
 
-router.get('/create', curdController.getAddUser)
+// router.get('/create', curdController.getAddUser)
+
 
 router.post('/create', [
     body('name').trim().isLength({ min: 3 }),
