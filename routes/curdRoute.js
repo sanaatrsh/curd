@@ -10,7 +10,6 @@ const router = express.Router();
 
 // router.get('/create', curdController.getAddUser)
 
-
 router.post('/create', [
     body('name').trim().isLength({ min: 3 }),
     body('email').isEmail(),

@@ -28,6 +28,7 @@ exports.postAddUser = (req, res, next) => {
         });
 }
 
+
 exports.postEditUser = (req, res, next) => {
     const userId = req.params.userId;
     const updatedName = req.body.name;
