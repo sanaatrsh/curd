@@ -14,8 +14,8 @@ router.post('/create', [
     body('mobile').isLength({ min: 7, max: 15 })
 ], curdController.postAddUser)
 
-router.post('/delete/:id', curdController.postDeleteUser);
+router.delete('/delete/:id', curdController.postDeleteUser);
 
-router.post('/edit/:id', curdController.editUser)
+router.put('/edit/:id', curdController.editUser)
 
 module.exports = router;

@@ -53,26 +53,28 @@ exports.editUser = (req, res, next) => {
     const updatedName = req.body.name;
     const updatedEmail = req.body.email;
     const updatedMobile = req.body.mobile;
-    User.findByPk(userId)
-        .then(user => {
-            user.name = updatedName;
-            user.email = updatedEmail;
-            user.mobile = updatedMobile;
-            return user.save();
+    // User.findByPk(userId)
+    //     .then(user => {
+    //         user.name = updatedName;
+    //         user.email = updatedEmail;
+    //         user.mobile = updatedMobile;
+    //         return user.save();
+    //     })
+    User
+        .update({
+            name: updatedName,
+            email: updatedEmail,
+            mobile: updatedMobile
+        }, {
+            where: {
+                Id: userId
+            }
         })
-        // User
-        //     .update({
-        //         name: updatedName,
-        //         email: updatedEmail,
-        //         mobile: updatedMobile
-        //     }, {
-        //         where: {
-        //             Id: userId
-        //         }
-        //     })
         .then(result => {
             console.log('UPDATED USER!');
-            res.redirect('index');
+            res.status(200).json({
+                message: 'Record updated successfully',
+            })
         })
         .catch(err => console.log(err));
 };
