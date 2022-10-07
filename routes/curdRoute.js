@@ -6,9 +6,7 @@ const { body } = require('express-validator');
 
 const router = express.Router();
 
-// router.get('/', curdController.getIndex);
-
-// router.get('/create', curdController.getAddUser)
+router.get('/', curdController.getAll);
 
 router.post('/create', [
     body('name').trim().isLength({ min: 3 }),
@@ -18,6 +16,6 @@ router.post('/create', [
 
 router.post('/delete/:id', curdController.postDeleteUser);
 
-router.post('/edit/:id', curdController.postEditUser);
+router.post('/edit/:id', curdController.editUser)
 
 module.exports = router;

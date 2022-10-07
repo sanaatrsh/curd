@@ -4,13 +4,16 @@ const bodyParser = require('body-parser');
 
 const User = require('./models/user');
 const sequelize = require('./util/database');
-const userRoutes = require('./routes/curdRoute');
 
 const app = express();
 
+app.set('view engine', 'ejs');
+app.set('views', 'views');
+
+const userRoutes = require('./routes/curdRoute');
 
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, '../', 'views')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(userRoutes);
 
